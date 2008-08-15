@@ -1,0 +1,11 @@
+citHeader("To cite package 'denstrip' in publications use:")
+     
+citEntry(entry="Article",
+  title = 	 "Displaying uncertainty with shading",
+  author = 	 "C. H. Jackson",
+  year = 	 "2008",
+  journal = 	 "The American Statistician",
+  note =	 "(in press)",
+  textVersion = "Jackson, C. H. (2008) Displaying uncertainty with
+shading. The American Statistician (in press)."  
+)
