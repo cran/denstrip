@@ -4,7 +4,18 @@ USER-VISIBLE CHANGES (for detailed changes see ChangeLog in the source package)
 --------------------
 
 
+Version 1.1 (2008-08-21)
+------------------------
+
+o Alpha channel supported in user-specified colours. 
+
+o Eliminated dependency on R.utils, through new function
+  seqToIntervals for finding sequences in a vector of integers. 
+
+
+
 Version 1.0 (2008-08-15)
 ------------------------
 
 o New release 
+

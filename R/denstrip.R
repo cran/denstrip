@@ -17,12 +17,12 @@ denstrip <- function(x, dens, at, width, horiz=TRUE, colmax=par("fg"), scale=1, 
     }
     dens <- dens / max(dens) * scale
     n <- length(x)
-    rgbmax <- col2rgb(colmax)
+    rgbmax <- col2rgb(colmax, alpha=TRUE)
     if (gamma <= 0) stop("gamma must be greater than 0")
     p <- dens[1:(n-1)] ^ gamma
     cols <- rgb(p*rgbmax[1] + (1 - p)*255,
                 p*rgbmax[2] + (1 - p)*255,
-                p*rgbmax[3] + (1 - p)*255, maxColorValue=255)
+                p*rgbmax[3] + (1 - p)*255, alpha=rgbmax[4], maxColorValue=255)
     first.col <- c(TRUE, cols[2:(n-1)] != cols[1:(n-2)])
     next.col <- c(first.col,TRUE); next.col[1] <- FALSE    
     if (missing(width))
@@ -111,12 +111,12 @@ densregion.default <- function(x, # times we have estimates for (vector)
     zq <- cut(z, qz, include.lowest=TRUE, labels=seq(length=nlevels))
     zq <- matrix(as.numeric(zq), nrow=nrow(z), ncol=ncol(z))
     dens <- tapply(z, zq, mean) # unique densities to plot 
-    rgbmax <- col2rgb(colmax)
+    rgbmax <- col2rgb(colmax, alpha=TRUE)
     if (gamma <= 0) stop("gamma must be greater than 0")
     p <- (dens / max(dens)) ^ gamma
     cols <- rgb(p*rgbmax[1] + (1 - p)*255,
                 p*rgbmax[2] + (1 - p)*255,
-                p*rgbmax[3] + (1 - p)*255, maxColorValue=255)
+                p*rgbmax[3] + (1 - p)*255, alpha=rgbmax[4], maxColorValue=255)
     z <- z[order(x),order(y)]
     x <- sort(x)
     y <- sort(y)
@@ -168,11 +168,20 @@ densregion.normal <- function(x, mean, sd, ny=20, ...)
     invisible()
 }
 
+seqToIntervals <- function(x){
+    x <- sort(unique(as.integer(x)))
+    breaks <- x[c(1, diff(x)) > 1]
+    groups <- cut(x, c(min(x)-1, breaks - 0.5, max(x)+1), labels = FALSE)
+    ranges <- tapply(x, groups, range)
+    res <- do.call("rbind", ranges)
+    colnames(res) <- c("from","to")
+    return(res)
+}
+
 sectioned.density <- function(x, dens, at, width, offset, ny,
                               method=c("kernel","frequency"), nx, horiz=TRUE,
                               colmax=par("fg"), colmin=par("bg"), gamma=1, ...)
 {
-    require(R.utils)
     if (missing(width))
         width <- diff(par("usr")[if(horiz) 3:4 else 1:2]) / 20
     if (!is.numeric(x)) stop("\'x\' must be numeric")
@@ -194,13 +203,13 @@ sectioned.density <- function(x, dens, at, width, offset, ny,
     }
     if (missing(ny)) ny <- nclass.Sturges(de$y)
     ycuts <- seq(0, max(de$y), length=ny+1)
-    rgbmax <- col2rgb(colmax)
-    rgbmin <- col2rgb(colmin)
+    rgbmax <- col2rgb(colmax, alpha=TRUE)
+    rgbmin <- col2rgb(colmin, alpha=TRUE)
     if (gamma <= 0) stop("gamma must be greater than 0")
     p <- seq(0,1,length=ny-1) ^ {1 / gamma}
     cols <- rgb(rgbmax[1] + p*(rgbmin[1] - rgbmax[1]),
                 rgbmax[2] + p*(rgbmin[2] - rgbmax[2]),
-                rgbmax[3] + p*(rgbmin[3] - rgbmax[3]), maxColorValue=255)
+                rgbmax[3] + p*(rgbmin[3] - rgbmax[3]), alpha=rgbmax[4], maxColorValue=255)
     for (i in 2:ny){
         ## draw rectangles for each region of x with density greather than cut-off
         ## one for each contiguous block in ind 
