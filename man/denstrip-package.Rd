@@ -46,12 +46,16 @@ regression.
 
 These methods are discussed in more detail by Jackson (2008).
 
+Each function is designed to add a graphic to an existing set of plot
+axes. The plots can be added to either base graphics or \pkg{lattice}
+panels.
+
 }
 \author{
 Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk>
 }
 \references{
-  Jackson, C. H. (2008) Displaying uncertainty with shading. \emph{The American Statistician}, in press.
+  Jackson, C. H. (2008) Displaying uncertainty with shading. \emph{The American Statistician}, 62(4):340-347.
   \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 }
 \keyword{ package }

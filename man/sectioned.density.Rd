@@ -1,5 +1,6 @@
 \name{sectioned.density}
 \alias{sectioned.density}
+\alias{panel.sectioned.density}
 \title{ Sectioned density plots }
 \description{
   Sectioned density plots (Cohen and Cohen, 2006) use shading and
@@ -9,7 +10,9 @@
 \usage{
 sectioned.density(x, dens, at, width, offset, ny,
                   method=c("kernel","frequency"), nx, horiz=TRUE,
-                  colmax=par("fg"), colmin=par("bg"), gamma=1, \dots)
+                  up.left = TRUE, colmax, colmin, gamma=1,
+                  lattice=FALSE, \dots)
+panel.sectioned.density(...)
 }
 \arguments{
   \item{x}{ Either the vector of points at which the density is
@@ -42,15 +45,21 @@ sectioned.density(x, dens, at, width, offset, ny,
     points upwards.  If \code{horiz=FALSE} then the plot is vertical
     and points leftwards, as the illustrations in Cohen and Cohen
     (2006). }
+  \item{up.left}{ If changed to \code{FALSE}, then horizontal plots
+    point downwards and vertical plots point rightwards.}
   \item{colmax}{ Darkest colour, either as a built-in R colour name (one
     of \code{\link{colors}()}) or an RGB hex value.  Defaults to
-    \code{\link{par}("fg")} which is normally     
+    \code{\link{par}("fg")} or its \pkg{lattice} equivalent, which is normally     
     \code{"black"}, or \code{"#000000"}. }
   \item{colmin}{ Lightest colour, either as a built-in R colour name (one
     of \code{\link{colors}()}) or an RGB hex value.  Defaults to
-    \code{\link{par}("bg")}, which is normally equivalent to 
+    \code{\link{par}("bg")} or its \pkg{lattice} equivalent, which is normally equivalent to 
     \code{"white"}, or \code{"#FFFFFF"}. }
   \item{gamma}{Gamma correction to apply to the colour palette, see \code{\link{denstrip}}.}
+  \item{lattice}{Set this to \code{TRUE} to make \code{\link{sectioned.density}}
+    a \pkg{lattice} panel function instead of a base graphics function. \cr
+    \code{panel.sectioned.density(x,...)} is equivalent to
+    \code{sectioned.density(x, lattice=TRUE, ...)}.}
   \item{\dots}{Additional arguments supplied to \code{\link[stats]{density}(x,\dots)}, if
     \code{method="kernel"}. }
 }

@@ -1,5 +1,6 @@
 \name{vwstrip.normal}
 \alias{vwstrip.normal}
+\alias{panel.vwstrip.normal}
 \title{Varying width strip for a normal or log-normal distribution}
 \description{
   Draws a varying width strip for a normal or log-normal distribution
@@ -8,6 +9,7 @@
 }
 \usage{
 vwstrip.normal(mean, sd, log=FALSE, nx=1000, \dots)
+panel.vwstrip.normal(...)
 }
 \arguments{
   \item{mean}{Mean of the normal distribution.}
@@ -19,7 +21,10 @@ vwstrip.normal(mean, sd, log=FALSE, nx=1000, \dots)
   }
   \item{nx}{Number of points to evaluate the density at.}
   \item{\dots}{Further arguments passed to \code{\link{vwstrip}},
-    for example, \code{at} to position the strip on the y-axis.}
+    for example, \code{at} to position the strip on the y-axis,
+    or \code{lattice=TRUE} to use as a lattice panel function. \cr
+  \code{panel.vwstrip.normal(x,\dots)} is equivalent to
+  \code{vwstrip.normal(x, lattice=TRUE,\dots)}.}
 }
 \seealso{
   \code{\link{vwstrip}}

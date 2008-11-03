@@ -1,3 +1,30 @@
+2008-11-03 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+
+	*  References updated to published version of the paper.
+
+	*  Version 1.2 released.
+	
+2008-09-09 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+
+	*  Code of the form seq(0, 1, length=n+2)[-c(1,n+2)] replaced by
+	ppoints(n, a=0)
+
+2008-08-28 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+
+	*  Panel functions for all strips implemented for use with lattice
+	graphics. Thanks to Austin Frank for the suggestion.
+
+	*  Sectioned density plots can now point downwards or rightwards.
+
+	*  Border drawn around lightest box in sectioned density plot.
+	
+	*  cex property added to denstrip.legend.
+
+	*  User-specified axis ticks supported in denstrip.legend.
+	
+	*  default axis tick annotations in denstrip.legend now have 3
+	significant figures instead of 2 decimal places.
+	
 2008-08-21 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
 
 	*  Version 1.1 released

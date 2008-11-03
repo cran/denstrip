@@ -1,5 +1,6 @@
 \name{vwstrip}
 \alias{vwstrip}
+\alias{panel.vwstrip}
 \title{Varying-width strips}
 \description{
   Varying-width strips give a compact illustration of a distribution. 
@@ -9,8 +10,9 @@
 }
 \usage{
 vwstrip(x, dens, at, width, horiz=TRUE, scale=1, limits=c(-Inf, Inf), 
-        col="gray", border=NULL, lwd=par("lwd"), lty=par("lty"), 
-        ticks=NULL, tlen=1, twd=par("lwd"), tty=par("lty"),\dots)
+        col="gray", border=NULL, lwd, lty, ticks=NULL, tlen=1, twd, tty,
+        lattice=FALSE,\dots)
+panel.vwstrip(...)
 }
 \arguments{
   \item{x}{ Either the vector of points at which the density is
@@ -32,14 +34,22 @@ vwstrip(x, dens, at, width, horiz=TRUE, scale=1, limits=c(-Inf, Inf),
     value, e.g. black is \code{"#000000"}.}
   \item{border}{Colour of the border, see \code{\link{polygon}}. Use
     \code{border=NA} to show no border.  The default, 'NULL', means to
-    use 'par("fg")'.}
-  \item{lwd}{Line width of the border (defaults to \code{\link{par}("lwd")}).}
-  \item{lty}{Line type of the border (defaults to \code{\link{par}("lty")}).}
+    use 'par("fg")' or its \pkg{lattice} equivalent}
+  \item{lwd}{Line width of the border (defaults to
+    \code{\link{par}("lwd")} or its \pkg{lattice} equivalent).}
+  \item{lty}{Line type of the border (defaults to
+    \code{\link{par}("lty")} or its \pkg{lattice} equivalent).}
   \item{ticks}{ Vector of \code{x}-positions on the strip to draw tick
     marks, or \code{NULL} for no ticks. }
   \item{tlen}{Length of the ticks, relative to the thickness of the strip.}
-  \item{twd}{ Line width of these marks (defaults to \code{\link{par}("lwd")}). }
-  \item{tty}{ Line type of these marks (defaults to \code{\link{par}("lty")}). }
+  \item{twd}{ Line width of these marks (defaults to
+    \code{\link{par}("lwd")} or its \pkg{lattice} equivalent). }
+  \item{tty}{ Line type of these marks (defaults to
+    \code{\link{par}("lty")} or its \pkg{lattice} equivalent). }
+  \item{lattice}{Set this to \code{TRUE} to make \code{\link{vwstrip}}
+    a \pkg{lattice} panel function instead of a base graphics function. \cr
+    \code{panel.vwstrip(x,...)} is equivalent to
+    \code{vwstrip(x, lattice=TRUE, ...)}.}
   \item{\dots}{Additional arguments supplied to \code{\link[stats]{density}(x,\dots)}, if
     the density is being estimated. }
 }
@@ -66,7 +76,7 @@ vwstrip(x, dens, at, width, horiz=TRUE, scale=1, limits=c(-Inf, Inf),
   package can be used to draw violin plots of observed data.
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
-  shading. \emph{The American Statistician}, in press. 
+  shading. \emph{The American Statistician}, 62(4):340-347. 
   \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 
   Hintze, J.L. and Nelson, R.D. (1998) Violin plots: a box plot -

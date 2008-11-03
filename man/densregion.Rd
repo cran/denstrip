@@ -47,10 +47,13 @@ densregion.default(x, y, z, pointwise=FALSE, nlevels=100,
   The plot is shaded by interpolating the value of the density
   between grid points, using the algorithm described by Cleveland (1993)
   as implemented in the \code{\link{filled.contour}} function.
+
+  With \pkg{lattice} graphics, similar plots can be implemented using
+  the \code{\link{contourplot}} or \code{\link{levelplot}} functions.
 }
 \references{
   Jackson, C. H.  (2008) Displaying uncertainty with
-  shading. \emph{The American Statistician}, in press.
+  shading. \emph{The American Statistician}, 62(4):340-347.
   \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 
   Cleveland, W. S. (1993) \emph{Visualizing Data}. Hobart Press, Summit,

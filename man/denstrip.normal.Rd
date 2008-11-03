@@ -1,5 +1,6 @@
 \name{denstrip.normal}
 \alias{denstrip.normal}
+\alias{panel.denstrip.normal}
 \title{Density strip for a normal or log-normal distribution}
 \description{
   Draws a density strip for a normal or log-normal distribution
@@ -8,6 +9,7 @@
 }
 \usage{
 denstrip.normal(mean, sd, log=FALSE, nx=1000, \dots)
+panel.denstrip.normal(...)
 }
 \arguments{
   \item{mean}{Mean of the normal distribution.}
@@ -19,7 +21,10 @@ denstrip.normal(mean, sd, log=FALSE, nx=1000, \dots)
   }
   \item{nx}{Number of points to evaluate the density at.}
   \item{\dots}{Further arguments passed to \code{\link{denstrip}},
-    for example, \code{at} to position the strip on the y-axis.}
+    for example, \code{at} to position the strip on the y-axis,
+    or \code{lattice=TRUE} to use as a lattice panel function. \cr
+    \code{panel.denstrip.normal(x,\dots)} is equivalent to
+    \code{denstrip.normal(x, lattice=TRUE,\dots)}.}
 }
 \seealso{
   \code{\link{denstrip}}

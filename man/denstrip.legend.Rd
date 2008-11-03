@@ -1,13 +1,15 @@
 \name{denstrip.legend}
 \alias{denstrip.legend}
+\alias{panel.denstrip.legend}
 \title{ Add a legend to a density strip or shaded region }
 \description{
   Add a legend to an existing plot with a density strip or shaded
   region, indicating the mapping of colours to densities.  
 }
 \usage{
-denstrip.legend(x, y, width, len, colmax=par("fg"), gamma=1, horiz=FALSE, max, 
-                nticks = 5, value.adj = 0, main = "Density")
+denstrip.legend(x, y, width, len, colmax, gamma=1, horiz=FALSE, max, 
+                nticks = 5, ticks, value.adj = 0, cex, main = "Density", lattice=FALSE)
+panel.denstrip.legend(...)
 }
 \arguments{
   \item{x}{ Central x position of the legend. }
@@ -17,15 +19,28 @@ denstrip.legend(x, y, width, len, colmax=par("fg"), gamma=1, horiz=FALSE, max,
   \item{len}{ Length of the legend strip, that is, the length of its
     longer dimension. Defaults to 1/4 of the axis range.}
   \item{colmax}{ Colour at the maximum density, either as a built-in R
-    colour name (one of \code{colors()}) or an RGB hex value.  }
+    colour name (one of \code{colors()}) or an RGB hex value.  Defaults
+    to \code{par("fg")} or its \pkg{lattice} equivalent, which is
+    \code{"black"} by default.}
   \item{gamma}{Gamma correction to apply to the colour palette, see \code{\link{denstrip}}.}
   \item{horiz}{ Legend strip drawn vertically (\code{FALSE}) or
     horizontally (\code{TRUE}).}
   \item{max}{ Maximum density on the legend, which is represented by \code{colmax}. }
-  \item{nticks}{ Number of tick marks on the axis adjacent to the legend. }
+  \item{nticks}{ Number of tick marks on the axis adjacent to the
+    legend, if \code{ticks} not supplied. }
+  \item{ticks}{Positions of numbered ticks on the axis adjacent to the
+    legend. Defaults to \code{nticks} equally spaced ticks between 0 and
+    the maximum density.}
   \item{value.adj}{ Extra adjustment for the axis labels to the right
     (if \code{horiz=FALSE}) or downwards (if \code{horiz=TRUE}). }
+  \item{cex}{Text expansion.  Defaults to \code{\link{par}("cex") * 0.75} or
+    \code{\link{trellis.par.get}("axis.text")$cex * 0.75}.}
   \item{main}{ Text to place above the legend. }
+  \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip.legend}}
+    a \pkg{lattice} panel function instead of a base graphics function. \cr
+    \code{panel.denstrip.legend(x,...)} is equivalent to
+    \code{denstrip.legend(x, lattice=TRUE, ...)}.}
+  \item{\dots}{Other arguments passed to \code{panel.denstrip.legend}.}
 }
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
 \seealso{ \code{\link{denstrip}}, \code{\link{densregion}} }

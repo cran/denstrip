@@ -1,12 +1,14 @@
 \name{cistrip}
 \alias{cistrip}
+\alias{panel.cistrip}
 \title{Line drawings of point and interval estimates}
 \description{
   Adds one or more points and lines to a plot, representing point and
   interval estimates. 
 }
 \usage{
-cistrip(x, at, d, horiz=TRUE, pch = 16, \dots)
+cistrip(x, at, d, horiz=TRUE, pch = 16, lattice=FALSE, \dots)
+panel.cistrip(...)
 }
 \arguments{
   \item{x}{ Either a vector of three elements corresponding to point estimate,
@@ -22,9 +24,14 @@ cistrip(x, at, d, horiz=TRUE, pch = 16, \dots)
   \item{pch}{Character to draw at the point estimate, see
     \code{\link{points}}.  By default this is a small solid circle, \code{pch=16}.}
   \item{\dots}{Further arguments passed to the \code{\link{points}} and
-    \code{\link{segments}} functions.  For example \code{lty,lwd} to set the
+    \code{\link{segments}} functions or their \pkg{lattice} equivalents.
+    For example \code{lty,lwd} to set the
     style and thickness of the line, or \code{cex} to expand the central
     point as in meta-analysis forest plots.}
+  \item{lattice}{Set this to \code{TRUE} to make \code{\link{cistrip}}
+    a \pkg{lattice} panel function instead of a base graphics function. \cr
+    \code{panel.cistrip(x,...)} is equivalent to
+    \code{cistrip(x, lattice=TRUE, ...)}.}
 }
 \seealso{ \code{\link{denstrip}}, \code{\link{vwstrip}}, \code{\link{bpstrip}} }
 \examples{

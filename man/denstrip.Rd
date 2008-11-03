@@ -1,5 +1,6 @@
 \name{denstrip}
 \alias{denstrip}
+\alias{panel.denstrip}
 \title{Density strips}
 \description{
   The density strip illustrates a univariate distribution as a shaded
@@ -11,9 +12,10 @@
   estimate.  This function adds a density strip to an existing plot. 
 }
 \usage{
-denstrip(x, dens, at, width, horiz=TRUE, colmax=par("fg"), scale=1, gamma=1, 
-         ticks=NULL, tlen=1.5, twd=par("lwd"), mticks=NULL, mlen=1.5,
-         mwd=par("lwd")*2, \dots)
+denstrip(x, dens, at, width, horiz=TRUE, colmax, scale=1, gamma=1, 
+         ticks=NULL, tlen=1.5, twd, mticks=NULL, mlen=1.5, mwd,
+         lattice=FALSE, \dots)
+panel.denstrip(...)
 }
 \arguments{
   \item{x}{ Either the vector of points at which the density is
@@ -30,7 +32,8 @@ denstrip(x, dens, at, width, horiz=TRUE, colmax=par("fg"), scale=1, gamma=1,
   \item{colmax}{ Colour at the maximum density, either as a built-in R
     colour name (one of \code{\link{colors}()}) or an RGB hex
     value. Defaults to \code{par("fg")} which is normally 
-    \code{"black"}, or \code{"#000000"}. }
+    \code{"black"}, or \code{"#000000"}. Or in \pkg{lattice}, defaults
+    to \code{trellis.par.get("add.line")$col}.}
   \item{scale}{ Proportion of \code{colmax} to shade the maximum
     density, for example \code{scale=0.5} with \code{colmax="black"} for
     a mid-grey colour.  }
@@ -43,21 +46,33 @@ denstrip(x, dens, at, width, horiz=TRUE, colmax=par("fg"), scale=1, gamma=1,
   }
   \item{ticks}{ Vector of \code{x}-positions on the strip to draw tick marks, or \code{NULL} for no ticks. }
   \item{tlen}{ Length of these tick marks relative to the strip width. }
-  \item{twd}{ Line thickness of these marks (defaults to \code{\link{par}("lwd")}). }
+  \item{twd}{ Line thickness of these marks (defaults to
+    \code{\link{par}("lwd")}, or in \pkg{lattice}, to \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
   \item{mticks}{ \code{x}-position to draw a thicker tick mark or tick
     marks (for example, at the mean or median). }
   \item{mlen}{ Length of this mark relative to the strip width. }
-  \item{mwd}{ Line thickness of this mark (defaults to \code{\link{par}("lwd")*2}). }
+  \item{mwd}{ Line thickness of this mark (defaults to
+    \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+  \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip}}
+    a \pkg{lattice} panel function instead of a base graphics function. \cr
+    \code{panel.denstrip(x,...)} is equivalent to
+    \code{denstrip(x, lattice=TRUE, ...)}.}
   \item{\dots}{Additional arguments supplied to \code{\link[stats]{density}(x,\dots)}, if
     the density is being estimated.  For example, \code{bw} to change
     the bandwidth of the kernel. }
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
-  shading. \emph{The American Statistician}, in press. 
+  shading. \emph{The American Statistician}, 62(4):340-347. 
   \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
+
+  An add-on which enables the WinBUGS 1.4 software for Bayesian analysis to
+  draw density strips is available from
+\url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip_wbpatch.txt}. Open
+  this file in WinBUGS and select \code{Tools->Decode->Decode All}.  
+
 }
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
-\seealso{ \code{\link{denstrip.legend}}, \code{\link{densregion}} }
+\seealso{ \code{\link{denstrip.legend}}, \code{\link{densregion}}.}
 \examples{
 ## Illustrate a known standard normal distribution
 ## Various settings to change the look of the plot
@@ -103,6 +118,17 @@ for (i in 1:n) {
 par(new=TRUE)
 plot(fit, lwd=2)
 
+## Use for lattice graphics (first example from help(xyplot))
+
+library(lattice)
+Depth <- equal.count(quakes$depth, number=8, overlap=.1)
+xyplot(lat ~ long | Depth, data = quakes,
+       panel = function(x, y) { 
+           panel.xyplot(x, y)
+           panel.denstrip(x, horiz=TRUE, at=-10, ticks=mean(x))
+           panel.denstrip(y, horiz=FALSE, at=165, ticks=mean(y))
+       } 
+       )
 }
 \keyword{aplot}
 \keyword{color}

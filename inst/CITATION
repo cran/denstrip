@@ -5,7 +5,9 @@ citEntry(entry="Article",
   author = 	 "C. H. Jackson",
   year = 	 "2008",
   journal = 	 "The American Statistician",
-  note =	 "(in press)",
+  volume = "62",
+  number = "4",
+  pages = "340-347", 
   textVersion = "Jackson, C. H. (2008) Displaying uncertainty with
-shading. The American Statistician (in press)."  
+shading. The American Statistician, 62(4):340-347."  
 )
