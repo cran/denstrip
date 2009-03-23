@@ -1,15 +1,31 @@
-2008-11-03 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2009-03-23
+
+	*  Examples using "Surv" changed for compatibility with new
+	survival package in upcoming R 2.9.0.
+
+	*  New argument "contour" to densregion.default to show contour
+	lines of constant density value.
+
+	*  Version 1.3 released 
+	
+2008-11-07 
+
+	*  cistrip now allows different "pch" for each element in a vector
+	of strips.  Similarly, the point sizes can be varied with a "cex"
+	argument.
+
+2008-11-03 
 
 	*  References updated to published version of the paper.
 
 	*  Version 1.2 released.
 	
-2008-09-09 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2008-09-09 
 
 	*  Code of the form seq(0, 1, length=n+2)[-c(1,n+2)] replaced by
 	ppoints(n, a=0)
 
-2008-08-28 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2008-08-28 
 
 	*  Panel functions for all strips implemented for use with lattice
 	graphics. Thanks to Austin Frank for the suggestion.
@@ -25,21 +41,21 @@
 	*  default axis tick annotations in denstrip.legend now have 3
 	significant figures instead of 2 decimal places.
 	
-2008-08-21 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2008-08-21 
 
 	*  Version 1.1 released
 
-2008-08-19 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2008-08-19 
 
 	*  Eliminated dependency on R.utils by re-implementing
 	seqToIntervals function in sectioned.density(). Thanks to Tobias
 	Verbeke for the suggestion.
 
-2008-08-15 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2008-08-15 
 
 	*  alpha channel supported in all user-specified colors. 
 	
-2008-08-15 Chris Jackson  <chris.jackson@mrc-bsu.cam.ac.uk>
+2008-08-15 
 
 	*  Version 1.0 released. 
 	

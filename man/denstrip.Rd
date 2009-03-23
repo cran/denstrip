@@ -101,7 +101,7 @@ denstrip(x, at=3, width=0.5, gamma=1/2.2)
 ## interpolation
 
 library(survival)
-fit <- survfit(Surv(time, status), data=aml, conf.type="log-log")
+fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log")
 plot(fit, col=0)
 lse <- (log(-log(fit$surv)) - log(-log(fit$upper)))/qnorm(0.975)
 n <- length(fit$time)

@@ -7,7 +7,7 @@
   interval estimates. 
 }
 \usage{
-cistrip(x, at, d, horiz=TRUE, pch = 16, lattice=FALSE, \dots)
+cistrip(x, at, d, horiz=TRUE, pch = 16, cex = 1, lattice=FALSE, \dots)
 panel.cistrip(...)
 }
 \arguments{
@@ -23,15 +23,17 @@ panel.cistrip(...)
   \item{horiz}{ Draw the line horizontally (\code{TRUE}) or vertically (\code{FALSE}).}  
   \item{pch}{Character to draw at the point estimate, see
     \code{\link{points}}.  By default this is a small solid circle, \code{pch=16}.}
-  \item{\dots}{Further arguments passed to the \code{\link{points}} and
-    \code{\link{segments}} functions or their \pkg{lattice} equivalents.
-    For example \code{lty,lwd} to set the
-    style and thickness of the line, or \code{cex} to expand the central
-    point as in meta-analysis forest plots.}
+  \item{cex}{Expansion factor for the character at the point estimate,
+    for.  A vector can be supplied here, one for each estimate, as in \code{pch}.  Useful for
+    meta-analysis forest plots.}
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{cistrip}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
     \code{panel.cistrip(x,...)} is equivalent to
     \code{cistrip(x, lattice=TRUE, ...)}.}
+  \item{\dots}{Further arguments passed to the \code{\link{points}} and
+    \code{\link{segments}} functions or their \pkg{lattice} equivalents.
+    For example \code{lty,lwd} to set the
+    style and thickness of the line.}
 }
 \seealso{ \code{\link{denstrip}}, \code{\link{vwstrip}}, \code{\link{bpstrip}} }
 \examples{

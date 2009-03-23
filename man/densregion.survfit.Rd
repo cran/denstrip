@@ -38,7 +38,7 @@
 \seealso{ \code{\link{densregion}}, \code{\link{densregion.normal}}, \code{\link{denstrip}}}
 \examples{
 library(survival)
-fit <- survfit(Surv(time, status), data=aml, conf.type="log-log")
+fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log")
 plot(fit, col=0)
 densregion(fit)
 lines(fit, lwd=3, conf.int=FALSE, lty=1)
@@ -49,7 +49,7 @@ densregion(fit, nlevels=10)
 densregion(fit, colmax="purple")
 densregion(fit, scale=0.6)}
 ## Wider CIs based on log survival
-fit <- survfit(Surv(time, status), data=aml, conf.type="log")
+fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log")
 plot(fit, col=0) 
 densregion(fit) # Big variation in maximum density 
 densregion(fit, pointwise=TRUE, colmax="maroon4")
@@ -58,7 +58,7 @@ plot(fit)
 
 ## Narrower CIs based on untransformed survival.
 ## Normal assumption probably unrealistic
-fit <- survfit(Surv(time, status), data=aml, conf.type="plain")
+fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="plain")
 plot(fit, col=0) 
 densregion(fit, pointwise=TRUE, colmax="darkmagenta")
 par(new=TRUE)

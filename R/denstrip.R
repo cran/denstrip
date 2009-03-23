@@ -135,6 +135,7 @@ densregion.default <- function(x, # times we have estimates for (vector)
                                colmax=par("fg"),
                                scale=1,
                                gamma=1,
+                               contour=FALSE,
                                ...
                                )
 {
@@ -155,6 +156,8 @@ densregion.default <- function(x, # times we have estimates for (vector)
     x <- sort(x)
     y <- sort(y)
     .Internal(filledcontour(as.double(x), as.double(y), scale*z/max(z), qz/max(z), col = cols))
+    if (contour)
+      contour(x, y, scale*z/max(z), add=TRUE, ...)
     invisible()
 }
 
@@ -281,13 +284,15 @@ sectioned.density <- function(x, dens, at, width, offset, ny,
     invisible()
 }
 
-cistrip <- function(x, at, d, horiz=TRUE, pch = 16, lattice=FALSE, ...)
+cistrip <- function(x, at, d, horiz=TRUE, pch = 16, cex=1, lattice=FALSE, ...)
 {
     if (missing(d)) d <- diff(par("usr")[if(horiz) 3:4 else 1:2]) / 60
     if (!is.numeric(x)) stop("\'x\' must be numeric")
     if (is.vector(x)) x <- matrix(x, ncol=3)
     n <- nrow(x)
     if (length(at) != n) stop("length of \'at\' should equal the number of estimates in \'x\'")
+    pch <- rep(pch, length.out=n)
+    cex <- rep(cex, length.out=n)
     if (lattice) {
         points.fn <- panel.points; seg.fn <- panel.segments;
     }
@@ -296,13 +301,13 @@ cistrip <- function(x, at, d, horiz=TRUE, pch = 16, lattice=FALSE, ...)
     }
     for (i in 1:n) { 
         if (horiz) { 
-            points.fn(x[i,1], at[i], pch=pch, ...)
+            points.fn(x[i,1], at[i], pch=pch[i], cex=cex[i], ...)
             seg.fn(x[i,2], at[i], x[i,3], at[i], ...)
             seg.fn(x[i,2], at[i]-d/2, x[i,2], at[i]+d/2, ...)
             seg.fn(x[i,3], at[i]-d/2, x[i,3], at[i]+d/2, ...)
         }
         else {
-            points.fn(at[i], x[i,1], pch=pch, ...)
+            points.fn(at[i], x[i,1], pch=pch[i], cex=cex[i], ...)
             seg.fn(at[i], x[i,2], at[i], x[i,3], ...)
             seg.fn(at[i]-d/2, x[i,2], at[i]+d/2, x[i,2], ...)
             seg.fn(at[i]-d/2, x[i,3], at[i]+d/2, x[i,3], ...)

@@ -12,7 +12,7 @@
 \usage{
 densregion(x, \dots)
 densregion.default(x, y, z, pointwise=FALSE, nlevels=100, 
-                   colmax=par("fg"), scale=1, gamma=1, \dots)
+                   colmax=par("fg"), scale=1, gamma=1, contour=FALSE, \dots)
 }
 \arguments{
   \item{x}{ Suppose the continuously-varying quantity varies over a
@@ -41,7 +41,10 @@ densregion.default(x, y, z, pointwise=FALSE, nlevels=100,
     \code{"black"}, or \code{"#000000"}. }
   \item{scale}{ Proportion of \code{colmax} to shade the maximum density, for example \code{scale=0.5} with \code{colmax="black"} for a mid-grey colour. }
   \item{gamma}{Gamma correction to apply to the colour palette, see \code{\link{denstrip}}.}
-  \item{\dots}{Further arguments passed to or from other methods.}
+  \item{contour}{If \code{TRUE} then contours are added to
+    illustrate lines of constant density.}
+  \item{\dots}{Further arguments passed to or from other methods, such
+    as the \code{\link{contour}} function for drawing contours.}
 }
 \details{
   The plot is shaded by interpolating the value of the density

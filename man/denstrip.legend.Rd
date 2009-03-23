@@ -46,7 +46,7 @@ panel.denstrip.legend(...)
 \seealso{ \code{\link{denstrip}}, \code{\link{densregion}} }
 \examples{
 library(survival)
-fit <- survfit(Surv(time, status), data=aml, conf.type="log-log")
+fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log")
 plot(fit, col=0)
 densregion(fit)
 denstrip.legend(100, 0.8)
