@@ -8,7 +8,8 @@
 }
 \usage{
 denstrip.legend(x, y, width, len, colmax, gamma=1, horiz=FALSE, max, 
-                nticks = 5, ticks, value.adj = 0, cex, main = "Density", lattice=FALSE)
+                nticks = 5, ticks, value.adj = 0, cex, main = "Density",
+                lattice=FALSE)
 panel.denstrip.legend(...)
 }
 \arguments{

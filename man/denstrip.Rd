@@ -32,7 +32,7 @@ panel.denstrip(...)
   \item{colmax}{ Colour at the maximum density, either as a built-in R
     colour name (one of \code{\link{colors}()}) or an RGB hex
     value. Defaults to \code{par("fg")} which is normally 
-    \code{"black"}, or \code{"#000000"}. Or in \pkg{lattice}, defaults
+    \code{"black"}, or \code{"#000000"}. Or in \pkg{lattice}, defaults   
     to \code{trellis.par.get("add.line")$col}.}
   \item{scale}{ Proportion of \code{colmax} to shade the maximum
     density, for example \code{scale=0.5} with \code{colmax="black"} for
@@ -47,12 +47,14 @@ panel.denstrip(...)
   \item{ticks}{ Vector of \code{x}-positions on the strip to draw tick marks, or \code{NULL} for no ticks. }
   \item{tlen}{ Length of these tick marks relative to the strip width. }
   \item{twd}{ Line thickness of these marks (defaults to
-    \code{\link{par}("lwd")}, or in \pkg{lattice}, to \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+    \code{\link{par}("lwd")}, or in \pkg{lattice}, to
+    \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
   \item{mticks}{ \code{x}-position to draw a thicker tick mark or tick
     marks (for example, at the mean or median). }
   \item{mlen}{ Length of this mark relative to the strip width. }
   \item{mwd}{ Line thickness of this mark (defaults to
-    \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+    \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to
+    \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
     \code{panel.denstrip(x,...)} is equivalent to
@@ -129,6 +131,22 @@ xyplot(lat ~ long | Depth, data = quakes,
            panel.denstrip(y, horiz=FALSE, at=165, ticks=mean(y))
        } 
        )
+
+## Lattice example data: heights of singing voice types
+
+bwplot(voice.part ~ height, data=singer, xlab="Height (inches)",
+       panel=panel.violin, xlim=c(50,80))
+bwplot(voice.part ~ height, data=singer, xlab="Height (inches)",
+       panel = function(x, y) {
+           xlist <- split(x, factor(y))
+           for (i in seq(along=xlist))
+               panel.denstrip(x=xlist[[i]], at=i)
+       },
+       xlim=c(50,80)
+       )
 }
+
+
+
 \keyword{aplot}
 \keyword{color}

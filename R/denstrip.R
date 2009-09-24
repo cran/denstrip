@@ -18,7 +18,7 @@ denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, scale=1, gamma=1,
     }
     if (lattice) {
         rect.fn <- panel.rect; seg.fn <- panel.segments
-        default.width <- diff(trellis.last.object()[[if(horiz) "y.limits" else "x.limits"]]) / 30
+        default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 30
         default.colmax <- trellis.par.get("add.line")$col
         default.twd <- trellis.par.get("add.line")$lwd; default.mwd <- trellis.par.get("add.line")$lwd*2
     }
@@ -79,7 +79,7 @@ denstrip.legend <- function(x, # central x position
 {
     if (lattice) {
         poly.fn <- panel.polygon; seg.fn <- panel.segments; text.fn <- panel.text
-        default.width <- diff(trellis.last.object()[[if(horiz) "y.limits" else "x.limits"]]) / 30
+        default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 30
         default.len <- diff(trellis.last.object()[[if(horiz) "x.limits" else "y.limits"]]) / 4
         default.colmax <- trellis.par.get("add.line")$col
         default.cex <- trellis.par.get("axis.text")$cex * 0.75
@@ -221,7 +221,7 @@ sectioned.density <- function(x, dens, at, width, offset, ny,
 {
     if (lattice) {
         rect.fn <- panel.rect
-        default.width <- diff(trellis.last.object()[[if(horiz) "y.limits" else "x.limits"]]) / 20
+        default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 20
         default.colmax <- trellis.par.get("add.line")$col
         default.colmin <- trellis.par.get("background")$col
     }
@@ -334,7 +334,7 @@ vwstrip <- function(x, dens, at, width, horiz=TRUE, scale=1, limits=c(-Inf,Inf),
     }
     if (lattice) {
         poly.fn <- panel.polygon; seg.fn <- panel.segments
-        default.width <- diff(trellis.last.object()[[if(horiz) "y.limits" else "x.limits"]]) / 20
+        default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 20
         default.lwd <- default.twd <- trellis.par.get("add.line")$lwd
         default.lty <- default.tty <- trellis.par.get("add.line")$lty
         default.border <- trellis.par.get("add.line")$col
@@ -393,7 +393,7 @@ bpstrip <- function(x, prob, at, width, horiz=TRUE, scale=1, limits=c(-Inf,Inf),
     }
     if (lattice) {
         poly.fn <- panel.polygon; seg.fn <- panel.segments
-        default.width <- diff(trellis.last.object()[[if(horiz) "y.limits" else "x.limits"]]) / 20
+        default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 20
         default.lwd <- default.twd <- trellis.par.get("add.line")$lwd
         default.lty <- default.tty <- trellis.par.get("add.line")$lty
         default.border <- trellis.par.get("add.line")$col

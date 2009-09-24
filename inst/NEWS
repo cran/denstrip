@@ -4,6 +4,14 @@ USER-VISIBLE CHANGES (for detailed changes see ChangeLog in the source package)
 --------------------
 
 
+Version 1.4 (2009-09-24)
+------------------------
+
+o panel.denstrip can now be used with the lattice "bwplot" function. 
+  See the new example code in help(denstrip).
+
+
+
 Version 1.3 (2009-03-23)
 ------------------------
 
