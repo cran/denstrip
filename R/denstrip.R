@@ -1,5 +1,5 @@
 
-denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, scale=1, gamma=1, 
+denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, colmin="white", scale=1, gamma=1, 
                      ticks=NULL, tlen=1.5, twd, mticks=NULL, mlen=1.5, mwd,
                      lattice=FALSE,
                      ...)
@@ -25,7 +25,8 @@ denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, scale=1, gamma=1,
     else {
         rect.fn <- rect; seg.fn <- segments;
         default.width <- diff(par("usr")[if(horiz) 3:4 else 1:2]) / 30
-        default.colmax <- par("fg"); default.twd <- par("lwd"); default.mwd <- par("lwd")*2
+        default.colmax <- par("fg")
+        default.twd <- par("lwd"); default.mwd <- par("lwd")*2
     }
     if (missing(width)) width <- default.width
     if (missing(colmax)) colmax <- default.colmax
@@ -34,11 +35,21 @@ denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, scale=1, gamma=1,
     dens <- dens / max(dens) * scale
     n <- length(x)
     rgbmax <- col2rgb(colmax, alpha=TRUE)
+    rgbmin <- if (colmin=="transparent") c(col2rgb(colmax, alpha=FALSE), 0) else col2rgb(colmin, alpha=TRUE)
     if (gamma <= 0) stop("gamma must be greater than 0")
     p <- dens[1:(n-1)] ^ gamma
-    cols <- rgb(p*rgbmax[1] + (1 - p)*255,
-                p*rgbmax[2] + (1 - p)*255,
-                p*rgbmax[3] + (1 - p)*255, alpha=rgbmax[4], maxColorValue=255)
+    if (colmin=="transparent") 
+        cols <- rgb(p*rgbmax[1] + (1 - p)*rgbmin[1],
+                    p*rgbmax[2] + (1 - p)*rgbmin[2],
+                    p*rgbmax[3] + (1 - p)*rgbmin[3],
+                    alpha=p*rgbmax[4] + (1 - p)*rgbmin[4],
+                    maxColorValue=255)
+    else 
+        cols <- rgb(p*rgbmax[1] + (1 - p)*rgbmin[1],
+                    p*rgbmax[2] + (1 - p)*rgbmin[2],
+                    p*rgbmax[3] + (1 - p)*rgbmin[3],
+                    alpha=rgbmax[4],
+                    maxColorValue=255)
     first.col <- c(TRUE, cols[2:(n-1)] != cols[1:(n-2)])
     next.col <- c(first.col,TRUE); next.col[1] <- FALSE    
     if (horiz) {
@@ -74,7 +85,7 @@ denstrip.normal <- function(mean, sd, log=FALSE, nx=1000, ...){
 
 denstrip.legend <- function(x, # central x position 
                             y, # central y position
-                            width, len, colmax, gamma=1, horiz=FALSE,
+                            width, len, colmax, colmin="white", gamma=1, horiz=FALSE,
                             max, nticks=5, ticks, value.adj=0, cex, main="Density", lattice=FALSE)
 {
     if (lattice) {
@@ -82,6 +93,7 @@ denstrip.legend <- function(x, # central x position
         default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 30
         default.len <- diff(trellis.last.object()[[if(horiz) "x.limits" else "y.limits"]]) / 4
         default.colmax <- trellis.par.get("add.line")$col
+        default.colmax <- trellis.par.get("background")$col
         default.cex <- trellis.par.get("axis.text")$cex * 0.75
       }
     else {
@@ -106,7 +118,7 @@ denstrip.legend <- function(x, # central x position
     npoints <- 1000 # number of distinct colors. no need to make this an argument
     dx <- seq(pt - len/2, pt + len/2, length=npoints)
     ddens <- seq(0, max, length=npoints)
-    denstrip(x=dx, dens=ddens, at=at, width=width, colmax=colmax, gamma=gamma, horiz=horiz, lattice=lattice)    
+    denstrip(x=dx, dens=ddens, at=at, width=width, colmax=colmax, colmin=colmin, gamma=gamma, horiz=horiz, lattice=lattice)    
     poly.fn(x = c(x - xdim/2, x + xdim/2, x + xdim/2, x - xdim/2), # draw box around strip
             y = c(y - ydim/2, y - ydim/2, y + ydim/2, y + ydim/2))
     if (missing(ticks)) {
@@ -133,6 +145,7 @@ densregion.default <- function(x, # times we have estimates for (vector)
                                pointwise=FALSE,
                                nlevels=100, # number of distinct densities to show
                                colmax=par("fg"),
+                               colmin="white",
                                scale=1,
                                gamma=1,
                                contour=FALSE,
@@ -147,11 +160,20 @@ densregion.default <- function(x, # times we have estimates for (vector)
     zq <- matrix(as.numeric(zq), nrow=nrow(z), ncol=ncol(z))
     dens <- tapply(z, zq, mean) # unique densities to plot 
     rgbmax <- col2rgb(colmax, alpha=TRUE)
+    rgbmin <- if (colmin=="transparent") c(col2rgb(colmax, alpha=FALSE), 0) else col2rgb(colmin, alpha=TRUE)
     if (gamma <= 0) stop("gamma must be greater than 0")
     p <- (dens / max(dens)) ^ gamma
-    cols <- rgb(p*rgbmax[1] + (1 - p)*255,
-                p*rgbmax[2] + (1 - p)*255,
-                p*rgbmax[3] + (1 - p)*255, alpha=rgbmax[4], maxColorValue=255)
+    if (colmin=="transparent") 
+        cols <- rgb(p*rgbmax[1] + (1 - p)*rgbmin[1],
+                    p*rgbmax[2] + (1 - p)*rgbmin[2],
+                    p*rgbmax[3] + (1 - p)*rgbmin[3],
+                    alpha=p*rgbmax[4] + (1 - p)*rgbmin[4], maxColorValue=255)
+    else 
+        cols <- rgb(p*rgbmax[1] + (1 - p)*rgbmin[1],
+                    p*rgbmax[2] + (1 - p)*rgbmin[2],
+                    p*rgbmax[3] + (1 - p)*rgbmin[3],
+                    alpha=rgbmax[4],
+                    maxColorValue=255)
     z <- z[order(x),order(y)]
     x <- sort(x)
     y <- sort(y)
@@ -217,23 +239,20 @@ seqToIntervals <- function(x){
 
 sectioned.density <- function(x, dens, at, width, offset, ny,
                               method=c("kernel","frequency"), nx, horiz=TRUE, up.left = TRUE,
-                              colmax, colmin, gamma=1, lattice=FALSE, ...)
+                              colmax, colmin="white", gamma=1, lattice=FALSE, ...)
 {
     if (lattice) {
         rect.fn <- panel.rect
         default.width <- diff(current.panel.limits()[[if(horiz) "ylim" else "xlim"]]) / 20
         default.colmax <- trellis.par.get("add.line")$col
-        default.colmin <- trellis.par.get("background")$col
     }
     else {
         rect.fn <- rect
         default.width <- diff(par("usr")[if(horiz) 3:4 else 1:2]) / 20
         default.colmax <- par("fg")
-        default.colmin <- par("bg")
     }
     if (missing(width)) width <- default.width
     if (missing(colmax)) colmax <- default.colmax
-    if (missing(colmin)) colmin <- default.colmin
     if (!is.numeric(x)) stop("\'x\' must be numeric")
     if (missing(offset)) offset <- width/3
     if (!up.left) offset <- - offset
@@ -255,12 +274,14 @@ sectioned.density <- function(x, dens, at, width, offset, ny,
     if (missing(ny)) ny <- nclass.Sturges(de$y)
     ycuts <- seq(0, max(de$y), length=ny+1)
     rgbmax <- col2rgb(colmax, alpha=TRUE)
-    rgbmin <- col2rgb(colmin, alpha=TRUE)
+    rgbmin <- if (colmin=="transparent") c(col2rgb(colmax, alpha=FALSE), 0) else col2rgb(colmin, alpha=TRUE)
     if (gamma <= 0) stop("gamma must be greater than 0")
     p <- seq(0,1,length=ny-1) ^ {1 / gamma}
     cols <- rgb(rgbmax[1] + p*(rgbmin[1] - rgbmax[1]),
                 rgbmax[2] + p*(rgbmin[2] - rgbmax[2]),
-                rgbmax[3] + p*(rgbmin[3] - rgbmax[3]), alpha=rgbmax[4], maxColorValue=255)
+                rgbmax[3] + p*(rgbmin[3] - rgbmax[3]),
+                alpha=rgbmax[4] + p*(rgbmin[4] - rgbmax[4]),
+                maxColorValue=255)
     for (i in 2:ny){
         ## draw rectangles for each region of x with density greather than cut-off
         ## one for each contiguous block in ind 
@@ -287,6 +308,7 @@ sectioned.density <- function(x, dens, at, width, offset, ny,
 cistrip <- function(x, at, d, horiz=TRUE, pch = 16, cex=1, lattice=FALSE, ...)
 {
     if (missing(d)) d <- diff(par("usr")[if(horiz) 3:4 else 1:2]) / 60
+    if (is.data.frame(x)) x <- as.matrix(x)
     if (!is.numeric(x)) stop("\'x\' must be numeric")
     if (is.vector(x)) x <- matrix(x, ncol=3)
     n <- nrow(x)
@@ -467,4 +489,3 @@ panel.sectioned.density <- function(...)
 {
     sectioned.density(..., lattice=TRUE)
 }
-

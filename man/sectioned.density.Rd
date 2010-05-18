@@ -10,7 +10,7 @@
 \usage{
 sectioned.density(x, dens, at, width, offset, ny,
                   method=c("kernel","frequency"), nx, horiz=TRUE,
-                  up.left = TRUE, colmax, colmin, gamma=1,
+                  up.left = TRUE, colmax, colmin="white", gamma=1,
                   lattice=FALSE, \dots)
 panel.sectioned.density(...)
 }
@@ -52,9 +52,7 @@ panel.sectioned.density(...)
     \code{\link{par}("fg")} or its \pkg{lattice} equivalent, which is normally     
     \code{"black"}, or \code{"#000000"}. }
   \item{colmin}{ Lightest colour, either as a built-in R colour name (one
-    of \code{\link{colors}()}) or an RGB hex value.  Defaults to
-    \code{\link{par}("bg")} or its \pkg{lattice} equivalent, which is normally equivalent to 
-    \code{"white"}, or \code{"#FFFFFF"}. }
+    of \code{\link{colors}()}) or an RGB hex value.  Defaults to white. }
   \item{gamma}{Gamma correction to apply to the colour palette, see \code{\link{denstrip}}.}
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{sectioned.density}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
@@ -72,7 +70,8 @@ panel.sectioned.density(...)
 hist(iris$Sepal.Length, nclass=20, col="lightgray")
 sectioned.density(iris$Sepal.Length, at=0.2)
 sectioned.density(iris$Sepal.Length, at=5)
-sectioned.density(iris$Sepal.Length, at=5, width=0.5)
+sectioned.density(iris$Sepal.Length, at=10, width=0.5)
+hist(iris$Sepal.Length, nclass=20, col="lightgray")
 sectioned.density(iris$Sepal.Length, at=7, width=0.5,
                   offset=0.1, colmax="darkmagenta")
 sectioned.density(iris$Sepal.Length, at=9, width=0.5,

@@ -1,3 +1,19 @@
+2010-05-18
+
+	*  Version 1.5 released 
+	
+2010-05-06
+
+	*  Added "colmin" argument to all functions which accept "colmax",
+	If set to "transparent", allows overlapping strips and regions to
+	merge smoothly, on all devices which support transparency. Thanks
+	to Anne Presanis for the suggestion.
+
+2009-10-07
+
+	*  Accept data frames as well as matrices in cistrip(), as long as
+	all entries are numeric. 
+
 2009-09-24
 
 	*  Version 1.4 released 

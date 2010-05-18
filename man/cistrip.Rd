@@ -13,8 +13,8 @@ panel.cistrip(...)
 \arguments{
   \item{x}{ Either a vector of three elements corresponding to point estimate,
     lower limit and upper limit of the interval estimate, respectively,
-    or a matrix with three columns representing point estimates, lower
-    and upper limits. 
+    or a numeric matrix or data frame with three columns representing
+    point estimates, lower and upper limits. 
   }
   \item{at}{ Position of the line on the y-axis (if
     \code{horiz=TRUE}) or the x-axis (if \code{horiz=FALSE}).  }

@@ -12,9 +12,9 @@
   estimate.  This function adds a density strip to an existing plot. 
 }
 \usage{
-denstrip(x, dens, at, width, horiz=TRUE, colmax, scale=1, gamma=1, 
-         ticks=NULL, tlen=1.5, twd, mticks=NULL, mlen=1.5, mwd,
-         lattice=FALSE, \dots)
+denstrip(x, dens, at, width, horiz=TRUE, colmax, colmin="white",
+         scale=1, gamma=1, ticks=NULL, tlen=1.5, twd, mticks=NULL,
+         mlen=1.5, mwd, lattice=FALSE, \dots)
 panel.denstrip(...)
 }
 \arguments{
@@ -34,6 +34,10 @@ panel.denstrip(...)
     value. Defaults to \code{par("fg")} which is normally 
     \code{"black"}, or \code{"#000000"}. Or in \pkg{lattice}, defaults   
     to \code{trellis.par.get("add.line")$col}.}
+  \item{colmin}{ Colour to shade the minimum density, likewise. 
+    Defaults to "white".  If this is set to \code{"transparent"},
+    and the current graphics device supports transparency (see \code{\link{rgb}}), then
+    overlapping strips will merge smoothly. }
   \item{scale}{ Proportion of \code{colmax} to shade the maximum
     density, for example \code{scale=0.5} with \code{colmax="black"} for
     a mid-grey colour.  }
@@ -48,12 +52,13 @@ panel.denstrip(...)
   \item{tlen}{ Length of these tick marks relative to the strip width. }
   \item{twd}{ Line thickness of these marks (defaults to
     \code{\link{par}("lwd")}, or in \pkg{lattice}, to
+
     \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
   \item{mticks}{ \code{x}-position to draw a thicker tick mark or tick
     marks (for example, at the mean or median). }
   \item{mlen}{ Length of this mark relative to the strip width. }
   \item{mwd}{ Line thickness of this mark (defaults to
-    \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to
+    \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to    
     \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
@@ -88,7 +93,6 @@ denstrip(x, dens, at=-4, ticks=c(-2, 0, 2))
 denstrip(x, dens, at=-3, ticks=c(-2, 2), mticks=0) 
 denstrip(x, dens, at=-2, ticks=c(-2, 2), mticks=0, mlen=3, 
          mwd=4, colmax="#55AABB") 
-denstrip(x, dens, at=-1, ticks=c(-2, 2), mticks=0, colmax="darkmagenta") 
 denstrip(x, dens, at=1, ticks=c(-2, 2), tlen=3, twd=3) 
 denstrip(x, dens, at=-4, ticks=c(-2, 2), mticks=0, colmax="darkgreen", 
          horiz=FALSE)
@@ -97,6 +101,20 @@ denstrip(x, width=0.2, at=-3, ticks=c(-2, 2), mticks=0, colmax="darkgreen",
          horiz=FALSE)
 denstrip(x, at=2, width=0.5, gamma=2.2) 
 denstrip(x, at=3, width=0.5, gamma=1/2.2) 
+
+### Specifying colour of minimum density 
+par(bg="lightyellow")
+plot(x, xlim=c(-5, 5), ylim=c(-5, 5), xlab="x", ylab="x", type="n")
+x <- seq(-4, 4, length=10000)
+dens <- dnorm(x)
+## Equivalent ways of drawing same distribution 
+denstrip(x, dens, at=-1, ticks=c(-2, 2), mticks=0, colmax="darkmagenta")
+denstrip(x, dens, at=-2, ticks=c(-2, 2), mticks=0, colmax="darkmagenta",
+         colmin="lightyellow")
+## ...though the next only works if graphics device supports transparency 
+denstrip(x, dens, at=-3, ticks=c(-2, 2), mticks=0, colmax="darkmagenta",
+         colmin="transparent")
+denstrip(x, dens, at=-4, ticks=c(-2, 2), mticks=0, colmax="#8B008B", colmin="white")
 
 ## Alternative to density regions (\link{densregion.survfit}) for
 ## survival curves - a series of vertical density strips with no

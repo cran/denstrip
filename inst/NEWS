@@ -4,6 +4,15 @@ USER-VISIBLE CHANGES (for detailed changes see ChangeLog in the source package)
 --------------------
 
 
+Version 1.5 (2010-05-18)
+------------------------
+
+o "colmin" argument added to all functions which accept "colmax".  If
+  set to "transparent", this allows multiple density regions or strips
+  to be drawn on the same plot with smooth overlaps, as long as the
+  graphics device supports transparency.
+
+
 Version 1.4 (2009-09-24)
 ------------------------
 

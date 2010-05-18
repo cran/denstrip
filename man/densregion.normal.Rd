@@ -66,6 +66,9 @@ densregion(time(pred$pred), y, z, colmax="darkgreen", pointwise=TRUE)
 lines(pred$pred, lty=2)
 lines(pred$pred + qnorm(0.975)*pred$se, lty=3)
 lines(pred$pred - qnorm(0.975)*pred$se, lty=3)
+
+
+densregion(time(pred$pred), y+2000, z, colmax="darkblue", pointwise=TRUE)
 }
 \keyword{ aplot }
 \keyword{ color }

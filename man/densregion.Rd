@@ -12,7 +12,8 @@
 \usage{
 densregion(x, \dots)
 densregion.default(x, y, z, pointwise=FALSE, nlevels=100, 
-                   colmax=par("fg"), scale=1, gamma=1, contour=FALSE, \dots)
+                   colmax=par("fg"), colmin="white", scale=1, gamma=1,
+                   contour=FALSE, \dots)
 }
 \arguments{
   \item{x}{ Suppose the continuously-varying quantity varies over a
@@ -38,7 +39,11 @@ densregion.default(x, y, z, pointwise=FALSE, nlevels=100,
   \item{colmax}{ Colour to shade the maximum density, either as a built-in R
     colour name (one of \code{\link{colors}()}) or an RGB hex
     value. Defaults to \code{par("fg")} which is normally     
-    \code{"black"}, or \code{"#000000"}. }
+    \code{"black"}, or \code{"#000000"}.  }
+  \item{colmin}{ Colour to shade the minimum density, likewise. 
+    Defaults to "white".  If this is set to \code{"transparent"},
+    and the current graphics device supports transparency (see \code{\link{rgb}}), then
+    multiple regions drawn on the same plot will merge smoothly. }
   \item{scale}{ Proportion of \code{colmax} to shade the maximum density, for example \code{scale=0.5} with \code{colmax="black"} for a mid-grey colour. }
   \item{gamma}{Gamma correction to apply to the colour palette, see \code{\link{denstrip}}.}
   \item{contour}{If \code{TRUE} then contours are added to
@@ -74,18 +79,24 @@ lcl <- seq(-1, 0, length=nx)
 ucl <- seq(1, 2, length=nx)
 se <- (est - lcl)/qnorm(0.975)
 
-y <- seq(-2, 2, length=100)
+y <- seq(-3, 3, length=100)
 z <- matrix(nrow=nx, ncol=length(y))
 for(i in 1:nx)
   z[i,] <- dnorm(y, est[i], se[i])
-plot(x, type="n", ylim=c(-1.5, 2.5))
+plot(x, type="n", ylim=c(-5.5, 2.5))
 densregion(x, y, z, colmax="darkgreen")
 lines(x, est)
 lines(x, lcl, lty=2)
 lines(x, ucl, lty=2)
+box()
+
+## On graphics devices that support transparency, specify
+## colmin="transparent" to allow adjacent regions to overlap smoothly
+densregion(x, y-1, z, colmax="magenta", colmin="transparent")
+
 \dontshow{
 densregion(x, y, z, nlevels=20, colmax="darkgreen")
-densregion(x, y, z, scale=0.5, colmax="darkmagenta")
+densregion(x, y, z, scale=0.5, colmax="darkmagenta", contour=TRUE)
 }
 ## or automatically choose the y points to evaluate the density 
 

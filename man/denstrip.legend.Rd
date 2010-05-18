@@ -7,9 +7,9 @@
   region, indicating the mapping of colours to densities.  
 }
 \usage{
-denstrip.legend(x, y, width, len, colmax, gamma=1, horiz=FALSE, max, 
-                nticks = 5, ticks, value.adj = 0, cex, main = "Density",
-                lattice=FALSE)
+denstrip.legend(x, y, width, len, colmax, colmin="white", gamma=1,
+                horiz=FALSE, max, nticks = 5, ticks, value.adj = 0,
+                cex, main = "Density", lattice=FALSE)
 panel.denstrip.legend(...)
 }
 \arguments{
@@ -23,6 +23,10 @@ panel.denstrip.legend(...)
     colour name (one of \code{colors()}) or an RGB hex value.  Defaults
     to \code{par("fg")} or its \pkg{lattice} equivalent, which is
     \code{"black"} by default.}
+  \item{colmin}{ Colour to shade the minimum density, likewise. 
+    Defaults to "white".  If this is set to \code{"transparent"},
+    and the current graphics device supports transparency (see \code{\link{rgb}}), then
+    overlapping strips will merge smoothly. }
   \item{gamma}{Gamma correction to apply to the colour palette, see \code{\link{denstrip}}.}
   \item{horiz}{ Legend strip drawn vertically (\code{FALSE}) or
     horizontally (\code{TRUE}).}
