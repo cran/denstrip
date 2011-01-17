@@ -4,6 +4,12 @@ USER-VISIBLE CHANGES (for detailed changes see ChangeLog in the source package)
 --------------------
 
 
+Version 1.5.1 (2011-01-17)
+--------------------------
+
+o "S3Method" corrected to "S3method" in NAMESPACE.
+
+
 Version 1.5 (2010-05-18)
 ------------------------
 

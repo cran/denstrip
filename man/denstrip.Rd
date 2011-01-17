@@ -5,10 +5,10 @@
 \description{
   The density strip illustrates a univariate distribution as a shaded
   rectangular strip, whose darkness at a point is proportional to the
-  probability density.  The strip is white at points of zero density
-  and darkest at the maximum density.  It may be used to generalise
+  probability density.  The strip is darkest at the maximum density and
+  fades into the background at the minimum density.  It may be used to generalise
   the common point-and-line drawing of a point and interval estimate,
-  by representing the entire posterior or fiducial distribution of the
+  by representing the entire posterior or predictive distribution of the
   estimate.  This function adds a density strip to an existing plot. 
 }
 \usage{
