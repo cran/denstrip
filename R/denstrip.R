@@ -86,7 +86,7 @@ denstrip.normal <- function(mean, sd, log=FALSE, nx=1000, ...){
 denstrip.legend <- function(x, # central x position 
                             y, # central y position
                             width, len, colmax, colmin="white", gamma=1, horiz=FALSE,
-                            max, nticks=5, ticks, value.adj=0, cex, main="Density", lattice=FALSE)
+                            max=1, nticks=5, ticks, value.adj=0, cex, main="Density", lattice=FALSE)
 {
     if (lattice) {
         poly.fn <- panel.polygon; seg.fn <- panel.segments; text.fn <- panel.text
@@ -154,7 +154,7 @@ densregion.default <- function(x, # times we have estimates for (vector)
 {
     if (pointwise)
         z <- z/apply(z, 1, max)
-    qz <- unique(quantile(z, seq(0,1,length=nlevels+1)))
+    qz <- unique(quantile(z, seq(0,1,length=nlevels+1), type=1))
     nlevels <- length(qz) - 1
     zq <- cut(z, qz, include.lowest=TRUE, labels=seq(length=nlevels))
     zq <- matrix(as.numeric(zq), nrow=nrow(z), ncol=ncol(z))
@@ -177,7 +177,7 @@ densregion.default <- function(x, # times we have estimates for (vector)
     z <- z[order(x),order(y)]
     x <- sort(x)
     y <- sort(y)
-    .Internal(filledcontour(as.double(x), as.double(y), scale*z/max(z), qz/max(z), col = cols))
+    .filled.contour(as.double(x), as.double(y), scale*z/max(z), qz/max(z), col = cols)
     if (contour)
       contour(x, y, scale*z/max(z), add=TRUE, ...)
     invisible()

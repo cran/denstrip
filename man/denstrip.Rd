@@ -75,7 +75,10 @@ panel.denstrip(...)
   An add-on which enables the WinBUGS 1.4 software for Bayesian analysis to
   draw density strips is available from
 \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip_wbpatch.txt}. Open
-  this file in WinBUGS and select \code{Tools->Decode->Decode All}.  
+this file in WinBUGS and select \code{Tools->Decode->Decode All}.
+
+In OpenBUGS (\url{http://www.openbugs.info}) density strips are
+available via the Inference/Compare menu. 
 
 }
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }

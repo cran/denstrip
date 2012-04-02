@@ -1,13 +1,28 @@
+2012-04-02
+
+	*  .filled.contour replaces .Internal call in densregion.  The
+	package therefore now depends on R 2.15 or later.
+
+	*  Default value of 1 added to "max" argument in denstrip.legend,
+	fixing the problem revealed by R-devel.
+
+	*  Version 1.5.2 released
+
+2011-07-25
+
+	*  Fix for densregion with very small numbers of unique densities.
+	Thanks to Daniel Chainey for the report.
+
 2011-01-17
 
-	*  Fix for error in NAMESPACE which caused CHECK fail. 
+	*  Fix for error in NAMESPACE which caused CHECK fail.
 
-	*  Version 1.5.1 released 
+	*  Version 1.5.1 released
 
 2010-05-18
 
-	*  Version 1.5 released 
-	
+	*  Version 1.5 released
+
 2010-05-06
 
 	*  Added "colmin" argument to all functions which accept "colmax",
@@ -18,20 +33,20 @@
 2009-10-07
 
 	*  Accept data frames as well as matrices in cistrip(), as long as
-	all entries are numeric. 
+	all entries are numeric.
 
 2009-09-24
 
-	*  Version 1.4 released 
-	
-2009-09-17 
+	*  Version 1.4 released
+
+2009-09-17
 
 	*  x and y limits in lattice plots taken from
-	current.panel.limits() instead of trellis.last.object(), so 
+	current.panel.limits() instead of trellis.last.object(), so
 	that it works when one axis shows factor levels.  Example
-	of use of denstrip with "bwplot" added to help(denstrip). 
-	Thanks to Kevin Wright for the suggestion. 
-	
+	of use of denstrip with "bwplot" added to help(denstrip).
+	Thanks to Kevin Wright for the suggestion.
+
 2009-03-23
 
 	*  Examples using "Surv" changed for compatibility with new
@@ -40,26 +55,26 @@
 	*  New argument "contour" to densregion.default to show contour
 	lines of constant density value.
 
-	*  Version 1.3 released 
-	
-2008-11-07 
+	*  Version 1.3 released
+
+2008-11-07
 
 	*  cistrip now allows different "pch" for each element in a vector
 	of strips.  Similarly, the point sizes can be varied with a "cex"
 	argument.
 
-2008-11-03 
+2008-11-03
 
 	*  References updated to published version of the paper.
 
 	*  Version 1.2 released.
-	
-2008-09-09 
+
+2008-09-09
 
 	*  Code of the form seq(0, 1, length=n+2)[-c(1,n+2)] replaced by
 	ppoints(n, a=0)
 
-2008-08-28 
+2008-08-28
 
 	*  Panel functions for all strips implemented for use with lattice
 	graphics. Thanks to Austin Frank for the suggestion.
@@ -67,29 +82,28 @@
 	*  Sectioned density plots can now point downwards or rightwards.
 
 	*  Border drawn around lightest box in sectioned density plot.
-	
+
 	*  cex property added to denstrip.legend.
 
 	*  User-specified axis ticks supported in denstrip.legend.
-	
+
 	*  default axis tick annotations in denstrip.legend now have 3
 	significant figures instead of 2 decimal places.
-	
-2008-08-21 
+
+2008-08-21
 
 	*  Version 1.1 released
 
-2008-08-19 
+2008-08-19
 
 	*  Eliminated dependency on R.utils by re-implementing
 	seqToIntervals function in sectioned.density(). Thanks to Tobias
 	Verbeke for the suggestion.
 
-2008-08-15 
+2008-08-15
 
-	*  alpha channel supported in all user-specified colors. 
-	
-2008-08-15 
+	*  alpha channel supported in all user-specified colors.
 
-	*  Version 1.0 released. 
-	
+2008-08-15
+
+	*  Version 1.0 released.

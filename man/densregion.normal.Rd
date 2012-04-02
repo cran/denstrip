@@ -9,7 +9,7 @@
   space. 
 }
 \usage{
-densregion.normal(x, mean, sd, ny=20, \dots)
+\method{densregion}{normal}(x, mean, sd, ny=20, \dots)
 }
 \arguments{
   \item{x}{ Suppose the continuously-varying quantity varies over a

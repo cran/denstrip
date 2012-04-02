@@ -11,7 +11,7 @@
 }
 \usage{
 densregion(x, \dots)
-densregion.default(x, y, z, pointwise=FALSE, nlevels=100, 
+\method{densregion}{default}(x, y, z, pointwise=FALSE, nlevels=100, 
                    colmax=par("fg"), colmin="white", scale=1, gamma=1,
                    contour=FALSE, \dots)
 }
