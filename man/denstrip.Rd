@@ -13,8 +13,8 @@
 }
 \usage{
 denstrip(x, dens, at, width, horiz=TRUE, colmax, colmin="white",
-         scale=1, gamma=1, ticks=NULL, tlen=1.5, twd, mticks=NULL,
-         mlen=1.5, mwd, lattice=FALSE, \dots)
+         scale=1, gamma=1, ticks=NULL, tlen=1.5, twd, tcol, mticks=NULL,
+         mlen=1.5, mwd, mcol, lattice=FALSE, \dots)
 panel.denstrip(...)
 }
 \arguments{
@@ -54,12 +54,14 @@ panel.denstrip(...)
     \code{\link{par}("lwd")}, or in \pkg{lattice}, to
 
     \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+  \item{tcol}{Colour of the tick marks. Defaults to \code{colmax}.}
   \item{mticks}{ \code{x}-position to draw a thicker tick mark or tick
     marks (for example, at the mean or median). }
   \item{mlen}{ Length of this mark relative to the strip width. }
   \item{mwd}{ Line thickness of this mark (defaults to
     \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to    
     \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+  \item{mcol}{Colour of this mark. Defaults to \code{colmax}.}
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
     \code{panel.denstrip(x,...)} is equivalent to
@@ -71,18 +73,23 @@ panel.denstrip(...)
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347. 
   \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
-
+}
+\author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
+\seealso{ \code{\link{denstrip.legend}}, \code{\link{densregion}}.}
+\section{In other software}{
   An add-on which enables the WinBUGS 1.4 software for Bayesian analysis to
   draw density strips is available from
 \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip_wbpatch.txt}. Open
-this file in WinBUGS and select \code{Tools->Decode->Decode All}.
+this file in WinBUGS and select \code{Tools->Decode->Decode All}. 
+They will then be available via the Inference/Compare menu.
 
 In OpenBUGS (\url{http://www.openbugs.info}) density strips are
 available via the Inference/Compare menu. 
 
+See this blog post:
+\url{http://blogs.sas.com/content/graphicallyspeaking/2012/11/03/density-strip-plot/},
+for density strips in SAS. 
 }
-\author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
-\seealso{ \code{\link{denstrip.legend}}, \code{\link{densregion}}.}
 \examples{
 ## Illustrate a known standard normal distribution
 ## Various settings to change the look of the plot

@@ -1,6 +1,6 @@
 
 denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, colmin="white", scale=1, gamma=1, 
-                     ticks=NULL, tlen=1.5, twd, mticks=NULL, mlen=1.5, mwd,
+                     ticks=NULL, tlen=1.5, twd, tcol, mticks=NULL, mlen=1.5, mwd, mcol, 
                      lattice=FALSE,
                      ...)
 {
@@ -32,6 +32,8 @@ denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, colmin="white", sca
     if (missing(colmax)) colmax <- default.colmax
     if (missing(twd)) twd <- default.twd
     if (missing(mwd)) mwd <- default.mwd
+    if (missing(tcol)) tcol <- colmax
+    if (missing(mcol)) mcol <- colmax
     dens <- dens / max(dens) * scale
     n <- length(x)
     rgbmax <- col2rgb(colmax, alpha=TRUE)
@@ -65,12 +67,12 @@ denstrip <- function(x, dens, at, width, horiz=TRUE, colmax, colmin="white", sca
     if (!is.null(ticks)){
         if (horiz) { tx0 <- tx1 <- ticks; ty0 <- at-width*tlen/2; ty1 <- at+width*tlen/2 }
         else { tx0 <- at-width*tlen/2; tx1 <- at+width*tlen/2; ty0 <- ty1 <- ticks }
-        seg.fn(tx0, ty0, tx1, ty1, lwd=twd)
+        seg.fn(tx0, ty0, tx1, ty1, lwd=twd, col=tcol)
     }
     if (!is.null(mticks)){
         if (horiz) { tmx0 <- tmx1 <- mticks; tmy0 <- at-width*mlen/2; tmy1 <- at+width*mlen/2  }
         else { tmx0 <- at-width*mlen/2; tmx1 <- at+width*mlen/2; tmy0 <- tmy1 <- mticks }
-        seg.fn(tmx0, tmy0, tmx1, tmy1, lwd=mwd)
+        seg.fn(tmx0, tmy0, tmx1, tmy1, lwd=mwd, col=mcol)
     }
     invisible()
 }

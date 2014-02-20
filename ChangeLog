@@ -1,3 +1,17 @@
+2014-02-20
+
+	*  Version 1.5.3 released.
+
+2013-12-07
+
+	*  survival listed only in Enhances rather than Suggests, fixing
+	package check NOTE.
+
+2013-02-11
+
+	*  Added arguments "tcol" and "mcol" to denstrip to change the
+	colours of tick marks.
+
 2012-04-02
 
 	*  .filled.contour replaces .Internal call in densregion.  The

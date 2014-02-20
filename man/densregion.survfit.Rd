@@ -25,10 +25,10 @@
   the method referred to in \code{\link{densregion}}.
 }  
 \note{
-  This approach can only illustrate one survival curve per
-  plot. Ideas would be welcome for how to define the shading for
-  multiple curves, when the shaded areas representing the confidence
-  regions overlap.  
+  In general, this approach can only illustrate one survival curve per
+  plot.  Though if the graphics device supports transparency (e.g. PDF)
+  multiple curves can be made to overlap smoothly - see the example
+  below. 
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347.
@@ -70,9 +70,12 @@ plot(fit)
 ## Multiple survival curves on same axes
 ## Should overlap smoothly on devices that allow transparency
 fit2 <- survfit(Surv(time, status) ~ x, data=aml, conf.type="log-log")
-fit2x1 <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log", subset=(x=="Maintained"))
-fit2x0 <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log", subset=(x=="Nonmaintained"))
-plot(fit2, lwd=3, xlab="Weeks", ylab="Survival", xlim=c(0, 60), lty=1:2, col=c("red", "blue"), conf.int=TRUE, mark.time=TRUE)
+fit2x1 <- survfit(Surv(time, status) ~ 1, data=aml,
+                  conf.type="log-log", subset=(x=="Maintained"))
+fit2x0 <- survfit(Surv(time, status) ~ 1, data=aml,
+                  conf.type="log-log", subset=(x=="Nonmaintained"))
+plot(fit2, lwd=3, xlab="Weeks", ylab="Survival", xlim=c(0, 60),
+     lty=1:2, col=c("red", "blue"), conf.int=TRUE, mark.time=TRUE)
 densregion(fit2x1, colmax="red", gamma=2)
 densregion(fit2x0, colmax="blue", gamma=2)
 

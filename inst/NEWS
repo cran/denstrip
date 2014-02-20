@@ -3,6 +3,15 @@
 USER-VISIBLE CHANGES (for detailed changes see ChangeLog in the source package)
 --------------------
 
+Version 1.5.3 (2014-02-20)
+--------------------------
+
+o Added arguments "tcol" and "mcol" to denstrip to change the colours
+  of tick marks.
+
+o DESCRIPTION file fixed to satisfy CRAN check.
+
+
 Version 1.5.2 (2012-04-02)
 --------------------------
 
