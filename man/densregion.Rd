@@ -62,7 +62,6 @@ densregion(x, \dots)
 \references{
   Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347.
-  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 
   Cleveland, W. S. (1993) \emph{Visualizing Data}. Hobart Press, Summit,
   New Jersey. 

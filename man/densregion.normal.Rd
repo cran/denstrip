@@ -31,7 +31,7 @@
 }
 \references{
   Jackson, C. H.  (2008) Displaying uncertainty with
-  shading. \emph{The American Statistician}, 62(4):340-347.  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
+  shading. \emph{The American Statistician}, 62(4):340-347.
 
   Cleveland, W. S. (1993) \emph{Visualizing Data}. Hobart Press, Summit,
   New Jersey. 
@@ -48,11 +48,13 @@ plot(USAccDeaths, xlim=c(1973, 1982), ylim=c(5000, 15000))
 
 ## Compute normal forecast densities automatically (slow)
 
+\dontrun{
 densregion.normal(time(pred$pred), pred$pred, pred$se, 
                   pointwise=TRUE, colmax="darkgreen")
 lines(pred$pred, lty=2)
 lines(pred$pred + qnorm(0.975)*pred$se, lty=3)
 lines(pred$pred - qnorm(0.975)*pred$se, lty=3)
+}
 
 ## Compute forecast densities by hand (more efficient) 
 

@@ -32,11 +32,12 @@
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347.
-  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 }
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
 \seealso{ \code{\link{densregion}}, \code{\link{densregion.normal}}, \code{\link{denstrip}}}
 \examples{
+if (requireNamespace("survival", quietly=TRUE)){
+
 library(survival)
 fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log")
 plot(fit, col=0)
@@ -78,6 +79,8 @@ plot(fit2, lwd=3, xlab="Weeks", ylab="Survival", xlim=c(0, 60),
      lty=1:2, col=c("red", "blue"), conf.int=TRUE, mark.time=TRUE)
 densregion(fit2x1, colmax="red", gamma=2)
 densregion(fit2x0, colmax="blue", gamma=2)
+
+}
 
 }
 \keyword{ aplot }

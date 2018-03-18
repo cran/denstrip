@@ -56,6 +56,5 @@ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk>
 }
 \references{
   Jackson, C. H. (2008) Displaying uncertainty with shading. \emph{The American Statistician}, 62(4):340-347.
-  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 }
 \keyword{ package }

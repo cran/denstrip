@@ -72,18 +72,11 @@ panel.denstrip(...)
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347. 
-  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 }
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
 \seealso{ \code{\link{denstrip.legend}}, \code{\link{densregion}}.}
 \section{In other software}{
-  An add-on which enables the WinBUGS 1.4 software for Bayesian analysis to
-  draw density strips is available from
-\url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip_wbpatch.txt}. Open
-this file in WinBUGS and select \code{Tools->Decode->Decode All}. 
-They will then be available via the Inference/Compare menu.
-
-In OpenBUGS (\url{http://www.openbugs.info}) density strips are
+In OpenBUGS (\url{http://www.openbugs.net}) density strips are
 available via the Inference/Compare menu. 
 
 See this blog post:
@@ -130,6 +123,8 @@ denstrip(x, dens, at=-4, ticks=c(-2, 2), mticks=0, colmax="#8B008B", colmin="whi
 ## survival curves - a series of vertical density strips with no
 ## interpolation
 
+if (requireNamespace("survival", quietly=TRUE)){
+
 library(survival)
 fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log")
 plot(fit, col=0)
@@ -147,6 +142,8 @@ for (i in 1:n) {
 }
 par(new=TRUE)
 plot(fit, lwd=2)
+
+}
 
 ## Use for lattice graphics (first example from help(xyplot))
 

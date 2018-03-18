@@ -71,13 +71,12 @@ panel.vwstrip(...)
   \code{limits} argument).  For example, the end points may illustrate 
  a particular pair of extreme quantiles of the distribution.
   
-  The function \code{\link[vioplot]{vioplot}} in the \pkg{vioplot}
+  The function \code{vioplot} in the \pkg{vioplot}
   package and \code{\link[lattice]{panel.violin}} in the \pkg{lattice}
   package can be used to draw violin plots of observed data.
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347. 
-  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 
   Hintze, J.L. and Nelson, R.D. (1998) Violin plots: a box plot -
   density trace synergism. \emph{The American Statistician}

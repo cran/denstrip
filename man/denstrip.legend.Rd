@@ -53,6 +53,9 @@ panel.denstrip.legend(...)
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
 \seealso{ \code{\link{denstrip}}, \code{\link{densregion}} }
 \examples{
+
+if (requireNamespace("survival", quietly=TRUE)){
+
 library(survival)
 fit <- survfit(Surv(time, status) ~ 1, data=aml, conf.type="log-log")
 plot(fit, col=0)
@@ -69,6 +72,11 @@ denstrip.legend(60, 0.7, horiz=TRUE, width=0.02, len=50, value.adj=0.04)
 denstrip.legend(40, 0.9, horiz=TRUE, colmax="darkmagenta")
 denstrip.legend(60, 0.4, horiz=TRUE, colmax="darkmagenta", max=2)
 }
+
+}
+
+
+
 }
 \keyword{aplot}
 \keyword{color}

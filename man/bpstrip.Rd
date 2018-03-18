@@ -61,13 +61,12 @@ panel.bpstrip(...)
   analytically, or an arbitrarily large sample from the distribution is
   assumed to be available via a method such as MCMC or bootstrapping.
   
-  The function \code{\link[Hmisc]{bpplot}} in the \pkg{Hmisc}
+  The function \code{bpplot} in the \pkg{Hmisc}
   package can be used to draw vertical box-percentile plots of observed
   data.  
 }
 \references{ Jackson, C. H.  (2008) Displaying uncertainty with
   shading. \emph{The American Statistician}, 62(4):340-347. 
-  \url{http://www.mrc-bsu.cam.ac.uk/personal/chris/papers/denstrip.pdf}
 
   Esty, W. W. and Banfield, J. D. (2003) The box-percentile
   plot. \emph{Journal of Statistical Software} \bold{8}(17).  
