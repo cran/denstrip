@@ -50,6 +50,9 @@ Each function is designed to add a graphic to an existing set of plot
 axes. The plots can be added to either base graphics or \pkg{lattice}
 panels.
 
+Similar graphics using the \pkg{ggplot2} package are implemented
+in the \pkg{ggdist} package.
+
 }
 \author{
 Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk>

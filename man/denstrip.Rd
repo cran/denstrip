@@ -53,14 +53,14 @@ panel.denstrip(...)
   \item{twd}{ Line thickness of these marks (defaults to
     \code{\link{par}("lwd")}, or in \pkg{lattice}, to
 
-    \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+    \code{\link[lattice]{trellis.par.get}("add.line")$lwd*2}.). }
   \item{tcol}{Colour of the tick marks. Defaults to \code{colmax}.}
   \item{mticks}{ \code{x}-position to draw a thicker tick mark or tick
     marks (for example, at the mean or median). }
   \item{mlen}{ Length of this mark relative to the strip width. }
   \item{mwd}{ Line thickness of this mark (defaults to
     \code{\link{par}("lwd")*2}, or in \pkg{lattice}, to    
-    \code{\link{trellis.par.get}("add.line")$lwd*2}.). }
+    \code{\link[lattice]{trellis.par.get}("add.line")$lwd*2}.). }
   \item{mcol}{Colour of this mark. Defaults to \code{colmax}.}
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
@@ -76,8 +76,12 @@ panel.denstrip(...)
 \author{ Christopher Jackson <chris.jackson@mrc-bsu.cam.ac.uk> }
 \seealso{ \code{\link{denstrip.legend}}, \code{\link{densregion}}.}
 \section{In other software}{
-In OpenBUGS (\url{http://www.openbugs.net}) density strips are
-available via the Inference/Compare menu. 
+
+Similar graphics using the \pkg{ggplot2} package are implemented
+in the \pkg{ggdist} package, termed "gradient intervals". 
+
+In OpenBUGS, density strips are available via the Inference/Compare
+menu.
 
 See this blog post:
 \url{http://blogs.sas.com/content/graphicallyspeaking/2012/11/03/density-strip-plot/},

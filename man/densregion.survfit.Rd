@@ -13,7 +13,7 @@
 }
 \arguments{
   \item{x}{ Survival curve object, returned by
-    \code{\link{survfit}}.  Confidence intervals must have been
+    \code{\link[survival]{survfit}}.  Confidence intervals must have been
     calculated, using \code{conf.type}.  }
   \item{ny}{ Minimum number of points to calculate the density at for
     each event time.  The default of 20 should be sufficient to obtain

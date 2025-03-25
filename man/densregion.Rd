@@ -57,7 +57,8 @@ densregion(x, \dots)
   as implemented in the \code{\link{filled.contour}} function.
 
   With \pkg{lattice} graphics, similar plots can be implemented using
-  the \code{\link{contourplot}} or \code{\link{levelplot}} functions.
+  the \code{\link[lattice]{contourplot}} or
+  \code{\link[lattice]{levelplot}} functions.
 }
 \references{
   Jackson, C. H.  (2008) Displaying uncertainty with

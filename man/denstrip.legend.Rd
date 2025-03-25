@@ -42,7 +42,7 @@ panel.denstrip.legend(...)
   \item{value.adj}{ Extra adjustment for the axis labels to the right
     (if \code{horiz=FALSE}) or downwards (if \code{horiz=TRUE}). }
   \item{cex}{Text expansion.  Defaults to \code{\link{par}("cex") * 0.75} or
-    \code{\link{trellis.par.get}("axis.text")$cex * 0.75}.}
+    \code{\link[lattice]{trellis.par.get}("axis.text")$cex * 0.75}.}
   \item{main}{ Text to place above the legend. }
   \item{lattice}{Set this to \code{TRUE} to make \code{\link{denstrip.legend}}
     a \pkg{lattice} panel function instead of a base graphics function. \cr
